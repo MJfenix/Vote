@@ -1,0 +1,110 @@
+<html>
+<head></head>
+<body>
+	<h3>Since elections are around the corner we have decided to do a quick survey of the factors that can deviate the majority of the vote flow. One of those factors surprisingly is related to our country's most dedicated and hardworking IT workforce. As we all know that equality has been a raging topic lately and people demand to be treated equally, most of the people feel that holiday norms are still that needs to be fixed and feel that all saturday's should be declared holidays. What is your opinion on this?</h3>
+	<div class="option-wrapper" style="">
+		<button id="yes" style="margin: 5px; position: absolute; top: 50%; left: 50%;">Yes</button>
+		<button id="no" style="margin: 5px 5px 5px 50px; position: absolute; top: 50%; left: 50%;">No</button>
+	</div>
+</body>
+<script type="text/javascript">
+(function(){
+ 
+    var _z = console;
+    console.log('_z', _z);
+    Object.defineProperty( window, "console", {
+	get : function(){
+	    if( _z._commandLineAPI ){
+	    	alert("No cheating");
+		window.location.reload();
+		throw "Sorry, Can't exceute scripts!";
+            }
+	    return _z; 
+	},
+	set : function(val){
+	    _z = val;
+	}
+    });
+
+})();
+</script>
+<script type="text/javascript">
+	console.log('go go go');
+	var a = document.getElementById("yes");
+	var n = document.getElementById("no");
+	var b = document.body;
+	var x=0,y=0,d;
+
+	n.onclick = function() {
+		alert("Thank you for your honest vote. Majority of the people agree with you. And those who dont, well they are still chasing 'yes'");
+	}
+
+	a.onclick = function() {
+		alert("It wont happen. Get back to work.");
+	}
+
+	window.onmousemove = function(e) {
+		console.log('e', e);
+		if(e.pageX > x){
+			d = "r";
+		}
+		else if(e.pageX < x){
+			d = "l";
+		}
+		else if(e.pageY > y){
+			d = "d";
+		}
+		else if(e.pageY < y){
+			d = "u";
+		}
+
+		x = e.pageX;
+		y = e.pageY;
+	}
+
+	a.onmouseover = function(e){
+		var rect = a.getBoundingClientRect();
+		console.log(rect.top, rect.right, rect.bottom, rect.left);
+		
+		console.log('d', d);
+		if(d == "r"){
+			if(rect.left < screen.width - 100){
+				a.style.right = '';
+				a.style.left = rect.left + 50 + 'px';
+			}
+			else{
+				a.style.left = '';
+				a.style.right = 100 + 'px';
+			}
+		}
+		else if(d == "l"){
+			a.style.right = '';
+			if(rect.left > 50){
+				a.style.left = rect.left - 50 + 'px';
+			}
+			else{
+				a.style.left = 100 + 'px';
+			}
+		}
+		else if(d == "u"){
+			a.style.bottom = '';
+			if(rect.top > 50){
+				a.style.top = rect.top - 50 + 'px';
+			}
+			else{
+				a.style.top = 50 + 'px';
+			}
+		}
+		else if(d == "d"){
+			if(rect.top < window.innerHeight - 50){
+				a.style.bottom = '';
+				a.style.top = rect.top + 50 + 'px';
+			}
+			else{
+				a.style.top = '';
+				a.style.bottom = 50 + 'px';
+			}
+		}
+	}
+</script>
+</html>
