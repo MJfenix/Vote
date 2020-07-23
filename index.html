@@ -1,50 +1,40 @@
 <html>
 <head></head>
 <body>
-	<h3>Given the current conditions do you think China is to blame and should be punished?</h3>
+	<h3>Given the current situation, many people are blaming and think China should be punished. This is a survey question to find out the opinion of the people. What are your views on this? Should China be held responsible?</h3>
 	<div class="option-wrapper" style="">
-		<button id="yes" style="margin: 5px; position: absolute; top: 50%; left: 50%;">Yes</button>
+		<button id="yes" tabindex="-1" style="margin: 5px; position: absolute; top: 50%; left: 50%;">Yes</button>
 		<button id="no" style="margin: 5px 5px 5px 50px; position: absolute; top: 50%; left: 50%;">No</button>
 	</div>
 </body>
-<script type="text/javascript">
-(function(){
- 
-    var _z = console;
-    console.log('_z', _z);
-    Object.defineProperty( window, "console", {
-	get : function(){
-	    if( _z._commandLineAPI ){
-	    	alert("No cheating");
-		window.location.reload();
-		throw "Sorry, Can't exceute scripts!";
-            }
-	    return _z; 
-	},
-	set : function(val){
-	    _z = val;
-	}
-    });
 
-})();
-</script>
 <script type="text/javascript">
-	console.log('go go go');
 	var a = document.getElementById("yes");
 	var n = document.getElementById("no");
 	var b = document.body;
 	var x=0,y=0,d;
 
+	window.onload = function() {
+			document.onselectstart = function() {
+			return false;
+		}
+	}
+
 	n.onclick = function() {
-		alert("Thank you for your honest vote.");
+		alert("Thank you for your honest vote. Majority of the people agree with you. And those who dont, well they are still chasing 'yes'");
 	}
 
-	a.onclick = function() {
-		alert("It wont happen. Get back to work.");
+	a.onclick = function(e) {
+		detectPos(e)
+		shiftBox(e);
 	}
 
-	window.onmousemove = function(e) {
-		console.log('e', e);
+	window.onmousemove =  function(e) {
+		detectPos(e)
+	}
+
+
+	function detectPos(e) {
 		if(e.pageX > x){
 			d = "r";
 		}
@@ -62,11 +52,18 @@
 		y = e.pageY;
 	}
 
-	a.onmouseover = function(e){
+	a.onmouseover = function(e) {
+		shiftBox(e);
+	}
+
+	a.ontouchstart = function(e) {
+		console.log('touch',e);
+		shiftBox(e);
+	}
+
+	function shiftBox(e) {
 		var rect = a.getBoundingClientRect();
-		console.log(rect.top, rect.right, rect.bottom, rect.left);
 		
-		console.log('d', d);
 		if(d == "r"){
 			if(rect.left < screen.width - 100){
 				a.style.right = '';
@@ -106,5 +103,7 @@
 			}
 		}
 	}
+
+	
 </script>
 </html>
