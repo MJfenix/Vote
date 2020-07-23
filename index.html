@@ -62,7 +62,7 @@
 		y = e.pageY;
 	}
 
-	a.onmouseover || a.onclick = function(e){
+	a.onmouseover = function(e){
 		var rect = a.getBoundingClientRect();
 		console.log(rect.top, rect.right, rect.bottom, rect.left);
 		
